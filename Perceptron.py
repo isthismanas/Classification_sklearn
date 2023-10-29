@@ -12,8 +12,8 @@ class Perceptron:
 
     def fit(self , x ,y):
 
-        rgen = np.random.default_rng(self.random_state)
-        self.w_ = rgen.standard_normal(loc= 0.0, scale = 0.01 , size= x.shape[1])
+        rgen = np.random.RandomState(self.random_state)
+        self.w_ = rgen.normal(loc= 0.0, scale = 0.01 , size= x.shape[1])
         self.b_ = np.float_(0.)
         self.errors = []
 
