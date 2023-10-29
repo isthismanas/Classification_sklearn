@@ -15,9 +15,9 @@ class Perceptron:
         rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc= 0.0, scale = 0.01 , size= x.shape[1])
         self.b_ = np.float_(0.)
-        self.errors = []
+        self.errors_ = []
 
-        for i in range(self.n_iters):
+        for _ in range(self.n_iters):
             errors = 0
             for xi , target in zip(x,y):
                 update = self.eta * (target - self.predict(xi))
