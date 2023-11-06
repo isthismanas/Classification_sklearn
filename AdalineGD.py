@@ -32,6 +32,3 @@ class AdalineGD:
     
     def predict(self, x):
         return np.where(self.activation(self.net_input(x) > 0.5 , 1, 0))
-
-
-
