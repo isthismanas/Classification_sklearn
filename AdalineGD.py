@@ -9,7 +9,7 @@ class AdalineGD:
 
     def fit(self , x, y):
         rgen = np.random.RandomState(self.RandomState)
-        self.w_ = rgen.normal(loc = 0.0 , scale = 0.01, size = x.shape[1])
+        self.w_ = rgen.normal(loc = 0.0 , scale = 0.01, size = x.shape[1:])
         self.b_ = np.float32(0.0)
         self.losses_ = []
 
@@ -31,4 +31,4 @@ class AdalineGD:
         return x
     
     def predict(self, x):
-        return np.where(self.activation(self.net_input(x) > 0.5 , 1, 0))
+        return np.where(self.activation(self.net_input(x)) > 0.5 , 1, 0)
