@@ -41,4 +41,21 @@ class AdalineSGD:
         self.rgen = np.random.RandomState(self.random_state)
         self.w_ = self.rgen.normal(loc = 0.0 , scale = 0.01, size = m)
         self.b_ = np.float(0.)
-        self.w_initialized = True                               
+        self.w_initialized = True
+
+    def _update_weights(self, xi , target):
+        output = self.activation(self.net_input(xi))
+        error = target - output
+        self.w_ += self.eta * 2.0 * xi * (error)
+        self.b_ += self.eta * 2.0 * error
+        loss = error**2
+        return loss
+    
+    def net_input(self, x , y):
+        return np.dot(x , self.w_) + self.b_
+    
+    def activation(self, x):
+        return x
+    
+    def predict(self, x):
+        return np.where(self.activation(self.net_input(x)) >= 0.5 , 1, 0)
