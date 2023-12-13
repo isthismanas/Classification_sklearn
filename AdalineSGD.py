@@ -35,4 +35,10 @@ class AdalineSGD:
 
     def shuffle(self, x , y):
         r = self.rgen.permutation(len(y))
-        return x[r], y[r]                               
+        return x[r], y[r]
+
+    def _initialize_weights(self, m):
+        self.rgen = np.random.RandomState(self.random_state)
+        self.w_ = self.rgen.normal(loc = 0.0 , scale = 0.01, size = m)
+        self.b_ = np.float(0.)
+        self.w_initialized = True                               
