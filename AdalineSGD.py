@@ -33,14 +33,14 @@ class AdalineSGD:
         
         return self
 
-    def shuffle(self, x , y):
+    def _shuffle(self, x , y):
         r = self.rgen.permutation(len(y))
         return x[r], y[r]
 
     def _initialize_weights(self, m):
         self.rgen = np.random.RandomState(self.random_state)
         self.w_ = self.rgen.normal(loc = 0.0 , scale = 0.01, size = m)
-        self.b_ = np.float(0.)
+        self.b_ = np.float32(0.)
         self.w_initialized = True
 
     def _update_weights(self, xi , target):
@@ -51,7 +51,7 @@ class AdalineSGD:
         loss = error**2
         return loss
     
-    def net_input(self, x , y):
+    def net_input(self, x ):
         return np.dot(x , self.w_) + self.b_
     
     def activation(self, x):
